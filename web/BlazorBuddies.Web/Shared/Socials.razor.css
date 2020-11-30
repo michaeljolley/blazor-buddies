@@ -1,0 +1,15 @@
+﻿section {
+    display: flex;
+    flex-direction: row;
+
+    width: 100%;
+    background-color: var(--dark-blue);
+}
+
+h2 {
+    color: #fff;
+}
+
+h2 span {
+    color: var(--light-blue);
+}

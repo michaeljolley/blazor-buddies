@@ -1,0 +1,10 @@
+﻿footer {
+    display: flex;
+    flex-direction: row;
+
+    width: 100%;
+    background-color: var(--light-blue);
+    font-size: .9rem;
+    color: var(--dark-blue);
+    padding: 10px;
+}

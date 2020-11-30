@@ -1,0 +1,16 @@
+:root {
+    --dark-blue: #123241;
+    --light-blue: rgb(97, 199, 212);
+}
+
+html, body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Open Sans', sans-serif;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    
+}
