@@ -8,6 +8,7 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{EF80C17A-2DD1-48BF-85C9-45213E9E69E4}"
 	ProjectSection(SolutionItems) = preProject
 		.editorconfig = .editorconfig
+		Install-DotNetGlobalTools.ps1 = Install-DotNetGlobalTools.ps1
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "web", "web", "{AF7DA4F0-DE89-4362-AA53-5979A81C0877}"

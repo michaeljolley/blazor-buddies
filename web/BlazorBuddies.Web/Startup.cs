@@ -32,9 +32,8 @@ namespace BlazorBuddies.Web
             services.AddServerSideBlazor();
 
             //Recommended approach is to create DbContexts in Blazor Server-Side using a DbContextFactory
-            services.AddDbContextFactory<BuddyDbContext>(opt =>
-                opt.UseSqlServer(Environment.GetEnvironmentVariable("BuddyDbConnectionString")));
-           
+            services.AddDbContextFactory<BuddyDbContext>(opt => 
+                opt.UseSqlServer(Configuration.GetConnectionString("BuddyDb"), b => b.MigrationsAssembly("BlazorBuddies.Web")));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
