@@ -14,7 +14,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "web", "web", "{AF7DA4F0-DE8
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "core", "core", "{5348ACB2-2D1B-4F64-86E2-CF8D52D6BE03}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BlazorBuddies.Core", "core\BlazorBuddies.Core\BlazorBuddies.Core.csproj", "{81D2E20C-8C79-414D-8A59-40202EAAC804}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BlazorBuddies.Core", "core\BlazorBuddies.Core\BlazorBuddies.Core.csproj", "{81D2E20C-8C79-414D-8A59-40202EAAC804}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
