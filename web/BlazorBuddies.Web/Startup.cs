@@ -32,8 +32,8 @@ namespace BlazorBuddies.Web
             services.AddServerSideBlazor();
 
             //Recommended approach is to create DbContexts in Blazor Server-Side using a DbContextFactory
-            services.AddDbContextFactory<BuddyDbContext>(opt => 
-                opt.UseSqlServer(Configuration.GetConnectionString("REPLACE WITH YOUR STRING NAME IN appsettings.json")));
+            services.AddDbContextFactory<BuddyDbContext>(opt =>
+                opt.UseSqlServer(Environment.GetEnvironmentVariable("BuddyDbConnectionString")));
            
         }
 

@@ -1,10 +1,31 @@
-﻿@buddyCount
+﻿@implements IDisposable
+@inject IDbContextFactory<BuddyDbContext> DbFactory
+
+@buddyCount
 
 @code {
 
-    int buddyCount = 707;
+    private BuddyDbContext dbContext;
 
-    // Get the actual count from the db here
-    // and set buddyCount = that
+    int buddyCount;
+
+    protected override async Task OnInitializedAsync()
+    {
+        try
+        {
+            dbContext = DbFactory.CreateDbContext();
+            buddyCount = await dbContext.Schools.SumAsync(s => s.Buddies);
+        }
+        finally
+        {
+        }
+
+        await base.OnInitializedAsync();
+    }
+
+    public void Dispose()
+    {
+        dbContext.Dispose();
+    }
 
 }
