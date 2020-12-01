@@ -1,3 +1,55 @@
 ﻿header {
-    background-color: var(--dark-blue);
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+}
+
+.outer {
+    background-image: url('/images/mast-bg.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    width: 100%;
+}
+
+.inner {
+    background-color: var(--dark-blue-transparent);
+    padding: 200px 0;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    width: 100%;
+}
+
+h2 {
+    font-family: 'Oswald', sans-serif;
+    font-weight: 400;
+    font-size: 3.7rem;
+    color: #fff;
+    line-height: 5.5rem;
+}
+
+    h2 span {
+        font-family: 'Pacifico', serif;
+        font-size: 4rem;
+    }
+
+.container div {
+    padding: 0 50px;
+}
+.container div:nth-child(2) {
+    border-left: solid var(--light-blue) 4px;
+}
+
+/* typical phone screen resolution */
+@media only screen and (max-width : 667px) {
+    .container div:first-child {
+        display: none;
+    }
+
+    .container div:nth-child(2) {
+        border: 0px;
+    }
 }
