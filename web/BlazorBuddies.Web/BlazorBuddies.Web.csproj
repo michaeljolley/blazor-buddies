@@ -3,6 +3,7 @@
   <PropertyGroup>
     <TargetFramework>net5.0</TargetFramework>
     <UserSecretsId>ae823ec3-ed54-4569-8944-1be2e6ec8c0d</UserSecretsId>
+    <Nullable>enable</Nullable>
   </PropertyGroup>
 
   <ItemGroup>
@@ -17,6 +18,11 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\core\BlazorBuddies.Core\BlazorBuddies.Core.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Watch Include="**\*.razor" />
+    <Watch Include="**\*.css" />
   </ItemGroup>
 
 </Project>

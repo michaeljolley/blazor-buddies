@@ -1,8 +1,18 @@
+@import url('blazor.css');
+
 :root {
     --dark-blue: #123241;
     --dark-blue-transparent: rgba(18, 50, 65, .4);
     --light-blue: rgb(97, 199, 212);
 }
+
+/* Reset */
+
+* { 
+    box-sizing: border-box;
+}
+
+/* Global Styles */
 
 html, body {
     margin: 0;
