@@ -1,5 +1,4 @@
 using BlazorBuddies.Core.Data;
-using BlazorBuddies.Web.Data;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Hosting;

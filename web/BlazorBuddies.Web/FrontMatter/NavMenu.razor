@@ -1,0 +1,30 @@
+﻿<nav>
+    <div class="container">
+        <div class="navbar">
+            <a class="navbar-brand" href="#"><img src="/images/logo_s_w.png" alt="logo"></a>
+            <button class="navbar-toggler" data-toggle="collapse">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+        </div>
+        <div class="navbar-collapse @NavMenuCssClass" @onclick="ToggleNavMenu">
+            <ul>
+                <li><a class="current" href="#top">Home</a></li>
+                <li><a href="#education">What we do</a></li>
+                <li><a href="#stories">Our Buddies</a></li>
+                <li><a href="#help">You can help</a></li>
+                <li><a href="#contact">Contact us</a></li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+@code {
+    private bool collapseNavMenu = true;
+
+    private string NavMenuCssClass => collapseNavMenu ? "collapse" : null;
+
+    private void ToggleNavMenu()
+    {
+        collapseNavMenu = !collapseNavMenu;
+    }
+}

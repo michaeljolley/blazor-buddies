@@ -1,0 +1,36 @@
+nav {
+    background-color: var(--dark-blue);
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    justify-content: center;
+    height: 60px;
+    align-items: center;
+
+    border-bottom: solid var(--light-blue) 4px;
+}
+
+.container {
+}
+
+ul {
+    display: flex;
+    flex-direction: row;
+}
+
+li {
+    list-style: none;
+}
+li a {
+    color: #fff;
+    text-transform: uppercase;
+    font-size: 1rem;
+    font-weight: bold;
+    text-decoration: none;
+    padding: 20px 10px;
+    letter-spacing: 0.01em;
+}
+
+    li a:hover, li a.current {
+        background-color: var(--light-blue);
+    }

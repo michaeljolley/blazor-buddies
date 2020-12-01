@@ -5,7 +5,7 @@
 
 @code {
 
-    private BuddyDbContext dbContext;
+    //private BuddyDbContext dbContext;
 
     int buddyCount;
 
@@ -13,8 +13,8 @@
     {
         try
         {
-            dbContext = DbFactory.CreateDbContext();
-            buddyCount = await dbContext.Schools.SumAsync(s => s.Buddies);
+            //dbContext = DbFactory.CreateDbContext();
+            //buddyCount = await dbContext.Schools.SumAsync(s => s.Buddies);
         }
         finally
         {
@@ -25,7 +25,7 @@
 
     public void Dispose()
     {
-        dbContext.Dispose();
+      //  dbContext.Dispose();
     }
 
 }
