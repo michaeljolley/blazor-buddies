@@ -1,6 +1,6 @@
 # blazor-buddies
 <!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
-[![All Contributors](https://img.shields.io/badge/all_contributors-1-orange.svg?style=flat-square)](#contributors-)
+[![All Contributors](https://img.shields.io/badge/all_contributors-2-orange.svg?style=flat-square)](#contributors-)
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
 ## Contributors ✨
 
@@ -12,6 +12,7 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
 <table>
   <tr>
     <td align="center"><a href="https://github.com/smabuk"><img src="https://avatars2.githubusercontent.com/u/2011834?v=4" width="100px;" alt=""/><br /><sub><b>Simon Brookes</b></sub></a><br /><a href="https://github.com/builders-club/blazor-buddies/commits?author=smabuk" title="Code">💻</a></td>
+    <td align="center"><a href="http://electrichavoc.tv"><img src="https://avatars1.githubusercontent.com/u/3020276?v=4" width="100px;" alt=""/><br /><sub><b>ElectricHavoc</b></sub></a><br /><a href="https://github.com/builders-club/blazor-buddies/commits?author=ElectricHavoc" title="Code">💻</a></td>
   </tr>
 </table>
 
