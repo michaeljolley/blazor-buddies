@@ -1,4 +1,11 @@
-﻿<header>
+﻿<!--
+This is using a global application state to get / set the values.
+It keeps separation of display logic and data retrieval
+Another process should call EF / update the ApplicationState
+-->
+@inject BlazorBuddies.Web.States.ApplicationState state
+
+<header>
     <div class="outer">
         <div class="inner">
             <div class="container">
@@ -6,7 +13,7 @@
                     <iframe src="//player.vimeo.com/video/104261655?title=0&amp;byline=0&amp;portrait=0" width="570" height="320" frameborder="0" webkitallowfullscreen="" mozallowfullscreen="" allowfullscreen=""></iframe>
                 </div>
                 <div>
-                    <h2>Feeding <span><BuddyCount /></span> children weekly, and counting...</h2>
+                    <h2>Feeding <span><Counter Animate="true" Target="@currentTarget" /></span><br />children weekly, and counting...</h2>
                 </div>
             </div>
         </div>
@@ -14,5 +21,17 @@
 </header>
 
 @code {
+    private int currentTarget = 0;
 
+    protected override async Task OnInitializedAsync()
+    {
+        this.currentTarget = state.BuddyCount;
+        state.OnBuddyCountChange += async () =>
+        {
+            this.currentTarget = state.BuddyCount;
+            await InvokeAsync(StateHasChanged);
+        };
+
+        await base.OnInitializedAsync();
+    }
 }

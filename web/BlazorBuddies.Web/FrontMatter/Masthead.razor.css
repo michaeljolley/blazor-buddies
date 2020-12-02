@@ -39,6 +39,10 @@ h2 {
 .container div {
     padding: 0 50px;
 }
+.container div:first-child {
+    margin: auto 0;
+    min-width: 670px;
+}
 .container div:nth-child(2) {
     border-left: solid var(--light-blue) 4px;
 }

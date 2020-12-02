@@ -2,12 +2,13 @@
 # You can modify the rules from these initially generated values to suit your own policies
 # You can learn more about editorconfig here: https://docs.microsoft.com/en-us/visualstudio/ide/editorconfig-code-style-settings-reference
 [*.cs]
-
+end_of_line = lf
 
 #Core editorconfig formatting - indentation
 
 #use soft tabs (spaces) for indentation
-indent_style = tabs
+indent_style = tab
+indent_size = 2;
 
 #Formatting - new line options
 
