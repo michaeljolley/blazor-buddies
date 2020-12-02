@@ -5,16 +5,37 @@
 
 @code {
 
-    //private BuddyDbContext dbContext;
+    private BuddyDbContext dbContext;
+    private System.Threading.Timer timer;
 
     int buddyCount;
+
+    [Parameter]
+    public bool Animate { get; set; }
 
     protected override async Task OnInitializedAsync()
     {
         try
         {
-            //dbContext = DbFactory.CreateDbContext();
-            //buddyCount = await dbContext.Schools.SumAsync(s => s.Buddies);
+            dbContext = DbFactory.CreateDbContext();
+            var count = await dbContext.Schools.SumAsync(s => s.Buddies);
+            if (Animate)
+            {
+                timer = new System.Threading.Timer(async _ =>
+                {
+                    buddyCount += 6;
+                    if (buddyCount >= count)
+                    {
+                        buddyCount = count;
+                        await timer.DisposeAsync();
+                    }
+                    await InvokeAsync(StateHasChanged);
+                }, null, 250, 1);
+            }
+            else
+            {
+                buddyCount = count;
+            }
         }
         finally
         {
@@ -25,7 +46,7 @@
 
     public void Dispose()
     {
-      //  dbContext.Dispose();
+        dbContext.Dispose();
     }
 
 }
