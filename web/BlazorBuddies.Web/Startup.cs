@@ -121,7 +121,7 @@ namespace BlazorBuddies.Web
 				endpoints.MapBlazorHub();
 				endpoints.MapFallbackToPage("/_Host");
 
-				logger.LogInformation("Applciation Started");
+        logger.LogInformation("Application Started");
 			});
 		}
 	}
