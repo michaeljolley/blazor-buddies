@@ -1,10 +1,40 @@
-<Router AppAssembly="@typeof(Program).Assembly">
-    <Found Context="routeData">
-        <RouteView RouteData="@routeData" DefaultLayout="@typeof(MainLayout)" />
-    </Found>
-    <NotFound>
-        <LayoutView Layout="@typeof(MainLayout)">
-            <p>Sorry, there's nothing at this address.</p>
-        </LayoutView>
-    </NotFound>
-</Router>
+@inject NavigationManager _nav
+
+
+<CascadingAuthenticationState>
+    <Router AppAssembly="@typeof(Program).Assembly">
+        <Found Context="routeData">
+            <AuthorizeRouteView RouteData="@routeData" DefaultLayout="@typeof(MainLayout)">
+                <NotAuthorized>
+                    @if (context?.User?.Identity == null || !context.User.Identity.IsAuthenticated)
+                    {
+                        var returnUrl = _nav.ToBaseRelativePath(_nav.Uri);
+
+                        if (string.IsNullOrWhiteSpace(returnUrl))
+                        {
+                            _nav.NavigateTo("/MicrosoftIdentity/Account/SignIn", false);
+                        }
+                        else
+                        {
+                            _nav.NavigateTo($"/MicrosoftIdentity/Account/SignIn?redirectUrl={returnUrl}", false);
+                        }
+                    }
+                    else
+                    {
+                        <p>
+                            You are not authorized to access this resource.
+                        </p>
+                    }
+                </NotAuthorized>
+                <Authorizing>
+                    <p>Just checking with the boss you can come in.</p>
+                </Authorizing>
+            </AuthorizeRouteView>
+        </Found>
+        <NotFound>
+            <LayoutView Layout="@typeof(MainLayout)">
+                <p>Sorry, there's nothing at this address.</p>
+            </LayoutView>
+        </NotFound>
+    </Router>
+</CascadingAuthenticationState>

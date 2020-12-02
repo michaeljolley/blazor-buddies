@@ -1,21 +1,22 @@
-using BlazorBuddies.Core.Data;
+using System;
+using System.Linq;
+
+using Microsoft.AspNetCore.Authentication.OpenIdConnect;
 using Microsoft.AspNetCore.Builder;
-using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.ResponseCompression;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using BlazorBuddies.Web.States;
-using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.ResponseCompression;
 using Microsoft.Extensions.Logging;
+using Microsoft.Identity.Web;
+using Microsoft.Identity.Web.UI;
+
+using BlazorBuddies.Core.Data;
 using BlazorBuddies.Web.Extensions;
+using BlazorBuddies.Web.States;
 
 namespace BlazorBuddies.Web
 {
@@ -34,9 +35,22 @@ namespace BlazorBuddies.Web
 		// For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
 		public void ConfigureServices(IServiceCollection services)
 		{
+
+			services.AddAuthentication(OpenIdConnectDefaults.AuthenticationScheme)
+							.AddMicrosoftIdentityWebApp(Configuration.GetSection("AzureAdB2C"));
+
+			services.AddControllersWithViews()
+							.AddMicrosoftIdentityUI();
+
+			services.AddAuthorization(options => options.FallbackPolicy = options.DefaultPolicy);
+
 			// Core Services
-			services.AddRazorPages();
-			services.AddServerSideBlazor(options => options.DetailedErrors = Environment.IsDevelopment());
+			services.AddRazorPages(options => {
+				//options.Conventions.AuthorizeFolder("/Admin");
+					options.Conventions.AllowAnonymousToFolder("/");
+				});
+			services.AddServerSideBlazor(options => options.DetailedErrors = Environment.IsDevelopment())
+							.AddMicrosoftIdentityConsentHandler();
 			services.AddResponseCaching();
 			services.AddResponseCompression(options => {
 				options.Providers.Add<BrotliCompressionProvider>();
@@ -78,21 +92,19 @@ namespace BlazorBuddies.Web
 				// This is used to control static file cache time
 				OnPrepareResponse = ctx => ctx.Context.Response.Headers.Append("Cache-Control", $"public, max-age={3600}")
 			});
-			var cookiePolicyOptions = new CookiePolicyOptions {
-				MinimumSameSitePolicy = SameSiteMode.Strict,
-			};
-			app.UseCookiePolicy(cookiePolicyOptions);
-
-			// Auth TBD
-			//app.UseAuthentication();
-			//app.UseAuthorization();
 
 			// Initialize the application state
 			app.InitAppState();
 
 			// Routing 
 			app.UseRouting();
+
+			app.UseAuthentication();
+			app.UseAuthorization();
+
 			_ = app.UseEndpoints(endpoints => {
+
+				endpoints.MapControllers();
 
 				// Health Check
 				endpoints.MapGet("/healthcheck", async context => {

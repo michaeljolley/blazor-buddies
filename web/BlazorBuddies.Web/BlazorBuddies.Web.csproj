@@ -13,7 +13,9 @@
     <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="5.0.0">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
-    </PackageReference>  
+    </PackageReference>
+    <PackageReference Include="Microsoft.Identity.Web" Version="1.3.0" />
+    <PackageReference Include="Microsoft.Identity.Web.UI" Version="1.3.0" />  
   </ItemGroup>
 
   <ItemGroup>
@@ -23,6 +25,25 @@
   <ItemGroup>
     <Watch Include="**\*.razor" />
     <Watch Include="**\*.css" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Remove="Shared\LoginDisplay.razor" />
+    <Content Remove="Shared\LoginRedirect.razor" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Watch Remove="Admin\_Imports.razor" />
+    <Watch Remove="Pages\OhCrap.razor" />
+    <Watch Remove="Shared\AdminLayout.razor" />
+    <Watch Remove="Shared\LoginDisplay.razor" />
+    <Watch Remove="Shared\LoginRedirect.razor" />
+    <Watch Remove="Shared\MainLayout - Copy.razor.css" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="FrontMatter\LoginDisplay.razor" />
+    <None Include="Shared\LoginRedirect.razor" />
   </ItemGroup>
 
 </Project>
