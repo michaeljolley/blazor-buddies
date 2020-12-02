@@ -20,10 +20,10 @@ Another process should call EF / update the ApplicationState
     </div>
 </header>
 
-@code {    
+@code {
     private int currentTarget = 0;
 
-    protected override Task OnInitializedAsync()
+    protected override async Task OnInitializedAsync()
     {
         this.currentTarget = state.BuddyCount;
         state.OnBuddyCountChange += async () =>
@@ -31,6 +31,7 @@ Another process should call EF / update the ApplicationState
             this.currentTarget = state.BuddyCount;
             await InvokeAsync(StateHasChanged);
         };
-        return base.OnInitializedAsync();
+
+        await base.OnInitializedAsync();
     }
 }
