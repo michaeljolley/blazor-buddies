@@ -25,8 +25,4 @@
     <Watch Include="**\*.css" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Watch Remove="FrontMatter\Counter.razor" />
-  </ItemGroup>
-
 </Project>
