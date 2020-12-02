@@ -1,31 +1,31 @@
-﻿@implements IDisposable
-@inject IDbContextFactory<BuddyDbContext> DbFactory
+﻿@inject BlazorBuddies.Web.States.ApplicationState applicationState
 
 @buddyCount
 
 @code {
+    // This is using a global application state to get / set the values. 
+    // It keeps separation of display logic and data retrieval 
+    // Another process should call EF / update the ApplicationState
 
-    //private BuddyDbContext dbContext;
-
-    int buddyCount;
-
-    protected override async Task OnInitializedAsync()
+    int buddyCount = 0;
+    protected override void OnInitialized()
     {
-        try
+        buddyCount = applicationState.BuddyCount;
+        applicationState.OnBuddyCountChange += () =>
         {
-            //dbContext = DbFactory.CreateDbContext();
-            //buddyCount = await dbContext.Schools.SumAsync(s => s.Buddies);
-        }
-        finally
-        {
-        }
+            //region Fun example of blazor server animated counter / Can remove without impact
+            var target = applicationState.BuddyCount;
 
-        await base.OnInitializedAsync();
+            for (var x=0; x<target;x+=10)
+            {
+                buddyCount = x;
+                System.Threading.Thread.Sleep(20);
+                InvokeAsync(StateHasChanged);
+            }
+            //endregion
+
+            buddyCount = applicationState.BuddyCount;
+            InvokeAsync(StateHasChanged);
+        };
     }
-
-    public void Dispose()
-    {
-      //  dbContext.Dispose();
-    }
-
 }
