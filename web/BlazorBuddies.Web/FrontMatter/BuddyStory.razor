@@ -1,0 +1,19 @@
+﻿<li class="s1">
+    <img src="/images/students/@(ImageNo).jpg" alt="img">
+    <h3 class="animate_top">@Title</h3>
+    <p class="animate_bottom">
+        @ChildContent
+    </p>
+</li>
+
+@code {
+    [Parameter]
+    public int ImageNo { get; set; } = 1;
+
+    [Parameter]
+    public string Title { get; set; } = "";
+
+    [Parameter]
+    public RenderFragment ChildContent { get; set; }
+
+} 
