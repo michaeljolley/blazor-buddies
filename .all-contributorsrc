@@ -41,6 +41,15 @@
         "code",
         "ideas"
       ]
+    },
+    {
+      "login": "ApocDev",
+      "name": "ApocDev",
+      "avatar_url": "https://avatars2.githubusercontent.com/u/446365?v=4",
+      "profile": "https://github.com/ApocDev",
+      "contributions": [
+        "code"
+      ]
     }
   ],
   "contributorsPerLine": 7,
