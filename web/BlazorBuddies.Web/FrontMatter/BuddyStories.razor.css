@@ -16,7 +16,7 @@ h2 {
     font-family: 'Oswald', sans-serif;
     font-weight: 400;
     font-size: 3.7rem;
-    color: #fff;
+    color: var(--dark-blue);
     line-height: 5.5rem;
     text-transform: uppercase;
     text-align: center;
@@ -29,8 +29,6 @@ h2 span {
 }
 
 ul {
-    /*width: 515%;*/
     position: relative;
     transition-duration: 0s;
-    /*transform: translate3d(-1210px, 0px, 0px);*/
 }

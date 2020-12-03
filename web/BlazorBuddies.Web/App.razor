@@ -1,6 +1,5 @@
 @inject NavigationManager _nav
 
-
 <CascadingAuthenticationState>
     <Router AppAssembly="@typeof(Program).Assembly">
         <Found Context="routeData">
@@ -8,16 +7,7 @@
                 <NotAuthorized>
                     @if (context?.User?.Identity == null || !context.User.Identity.IsAuthenticated)
                     {
-                        var returnUrl = _nav.ToBaseRelativePath(_nav.Uri);
-
-                        if (string.IsNullOrWhiteSpace(returnUrl))
-                        {
-                            _nav.NavigateTo("/MicrosoftIdentity/Account/SignIn", false);
-                        }
-                        else
-                        {
-                            _nav.NavigateTo($"/MicrosoftIdentity/Account/SignIn?redirectUrl={returnUrl}", false);
-                        }
+                        _nav.NavigateTo("/MicrosoftIdentity/Account/SignIn", false);
                     }
                     else
                     {

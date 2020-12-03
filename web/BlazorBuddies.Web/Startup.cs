@@ -46,7 +46,6 @@ namespace BlazorBuddies.Web
 
 			// Core Services
 			services.AddRazorPages(options => {
-				//options.Conventions.AuthorizeFolder("/Admin");
 					options.Conventions.AllowAnonymousToFolder("/");
 				});
 			services.AddServerSideBlazor(options => options.DetailedErrors = Environment.IsDevelopment())
@@ -60,9 +59,6 @@ namespace BlazorBuddies.Web
 			//Recommended approach is to create DbContexts in Blazor Server-Side using a DbContextFactory
 			services.AddDbContextFactory<BuddyDbContext>(opt =>
 					opt.UseSqlServer(Configuration.GetConnectionString("BuddyDb"), b => b.MigrationsAssembly("BlazorBuddies.Web")));
-
-			// Application Insights Configuration TBD
-			// services.AddApplicationInsightsTelemetry();
 
 			// States
 			services.AddSingleton<ApplicationState>();

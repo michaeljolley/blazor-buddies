@@ -12,7 +12,6 @@
       "commandName": "Project",
       "launchBrowser": true,
       "environmentVariables": {
-        "BuddyDbConnectionString": "Value",
         "ASPNETCORE_ENVIRONMENT": "Development"
       },
       "dotnetRunMessages": "true",

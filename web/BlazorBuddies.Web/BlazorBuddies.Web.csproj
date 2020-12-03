@@ -29,21 +29,25 @@
 
   <ItemGroup>
     <Content Remove="Shared\LoginDisplay.razor" />
-    <Content Remove="Shared\LoginRedirect.razor" />
   </ItemGroup>
 
   <ItemGroup>
+    <None Remove="Admin\NavBar.razor.css" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Watch Remove="Admin\NavBar.razor" />
+    <Watch Remove="Admin\NavBar.razor.css" />
+    <Watch Remove="Admin\Schools.razor" />
     <Watch Remove="Admin\_Imports.razor" />
     <Watch Remove="Pages\OhCrap.razor" />
     <Watch Remove="Shared\AdminLayout.razor" />
     <Watch Remove="Shared\LoginDisplay.razor" />
-    <Watch Remove="Shared\LoginRedirect.razor" />
     <Watch Remove="Shared\MainLayout - Copy.razor.css" />
   </ItemGroup>
 
   <ItemGroup>
-    <None Include="FrontMatter\LoginDisplay.razor" />
-    <None Include="Shared\LoginRedirect.razor" />
+    <Content Include="Admin\NavBar.razor.css" />
   </ItemGroup>
 
 </Project>
