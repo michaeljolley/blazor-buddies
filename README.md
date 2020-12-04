@@ -1,6 +1,6 @@
 # blazor-buddies
 <!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
-[![All Contributors](https://img.shields.io/badge/all_contributors-5-orange.svg?style=flat-square)](#contributors-)
+[![All Contributors](https://img.shields.io/badge/all_contributors-6-orange.svg?style=flat-square)](#contributors-)
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
 ## Contributors ✨
 
@@ -16,6 +16,7 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
     <td align="center"><a href="https://github.com/parithon"><img src="https://avatars3.githubusercontent.com/u/8602418?v=4" width="100px;" alt=""/><br /><sub><b>Anthony Conrad (parithon)</b></sub></a><br /><a href="https://github.com/builders-club/blazor-buddies/commits?author=parithon" title="Code">💻</a></td>
     <td align="center"><a href="https://baldbeardedbuilder.com/"><img src="https://avatars2.githubusercontent.com/u/1228996?v=4" width="100px;" alt=""/><br /><sub><b>Michael Jolley</b></sub></a><br /><a href="https://github.com/builders-club/blazor-buddies/commits?author=MichaelJolley" title="Code">💻</a> <a href="#ideas-MichaelJolley" title="Ideas, Planning, & Feedback">🤔</a></td>
     <td align="center"><a href="https://github.com/ApocDev"><img src="https://avatars2.githubusercontent.com/u/446365?v=4" width="100px;" alt=""/><br /><sub><b>ApocDev</b></sub></a><br /><a href="https://github.com/builders-club/blazor-buddies/commits?author=ApocDev" title="Code">💻</a></td>
+    <td align="center"><a href="https://slorello.com"><img src="https://avatars1.githubusercontent.com/u/42971704?v=4" width="100px;" alt=""/><br /><sub><b>Stephen Lorello</b></sub></a><br /><a href="https://github.com/builders-club/blazor-buddies/commits?author=slorello89" title="Code">💻</a></td>
   </tr>
 </table>
 
