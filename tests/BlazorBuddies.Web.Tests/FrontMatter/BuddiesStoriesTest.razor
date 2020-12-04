@@ -1,0 +1,72 @@
+﻿@inherits TestComponentBase
+
+<Fixture Test="Should_Have_Expected_Header">
+    <ComponentUnderTest>
+        <BuddyStories />
+    </ComponentUnderTest>
+
+    @code
+    {
+        void Should_Have_Expected_Header(Fixture fixture)
+        {
+            // Given
+            var expected = "<h2>Our buddies and their <span>stories</span></h2>";
+
+            // When
+            var cut = fixture.GetComponentUnderTest<BuddyStories>();
+            var actual = cut.Find("h2");
+
+            // Then
+            actual.MarkupMatches(expected);
+        }
+    }
+</Fixture>
+
+<Fixture Test="Should_Have_Three_Stories">
+    <ComponentUnderTest>
+        <BuddyStories />
+    </ComponentUnderTest>
+
+    @code
+    {
+        void Should_Have_Three_Stories(Fixture fixture)
+        {
+            // Given
+            var expected1 = @"
+    <li >
+      <img src=""/images/students/4.jpg"" alt= ""img"">
+      <h3>Hungry &amp; embarrassed</h3>
+      <p>
+        A small girl often comes to school unwashed, hungry and embarrassed that she didn't have a snack like her peers.  To fit in, one day she brings a can of soup and an onion as a snack.
+      </p>
+    </li>";
+            var expected2 = @"
+    <li >
+      <img src=""/images/students/2.jpg"" alt=""img"">
+      <h3 >Brothers with no focus</h3>
+      <p >
+        Two brothers were struggling with a lack of attention and motivation.  According to teachers, once they began receiving their buddy bags the brothers began doing much better.
+      </p>
+    </li>";
+            var expected3 = @"
+    <li >
+      <img src=""/images/students/3.jpg"" alt=""img"">
+      <h3 >Girl now has dinner</h3>
+      <p >
+        Elementary aged girl told the school counselor she was having her ""backpack food"" for dinner.  It was later learned that her family had been living without electricity for the past 6 months.
+      </p>
+    </li>";
+
+            // When
+            var cut = fixture.GetComponentUnderTest<BuddyStories>();
+            var actual = cut.FindAll("li");
+
+            // Then
+            actual.ShouldAllBe(
+                a => a.MarkupMatches(expected1),
+                a => a.MarkupMatches(expected2),
+                a => a.MarkupMatches(expected3)
+            );
+        }
+    }
+</Fixture>

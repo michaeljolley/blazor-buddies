@@ -1,0 +1,19 @@
+﻿@inherits TestComponentBase
+
+<SnapshotTest Description="Should_Display_Expected_Output">
+    <TestInput>
+        <BuddyStory ImageNo="10000000"
+                    Title="The Title">
+            I am some very long content. ;)
+        </BuddyStory>
+    </TestInput>
+    <ExpectedOutput>
+        <li>
+            <img src="/images/students/10000000.jpg" alt="img">
+            <h3>The Title</h3>
+            <p>
+                I am some very long content. ;)
+            </p>
+        </li>
+    </ExpectedOutput>
+</SnapshotTest>
