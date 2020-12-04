@@ -17,6 +17,10 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "core", "core", "{5348ACB2-2
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BlazorBuddies.Core", "core\BlazorBuddies.Core\BlazorBuddies.Core.csproj", "{81D2E20C-8C79-414D-8A59-40202EAAC804}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{F5AFEBDB-8D36-49E1-B0B7-8E9C098B62DE}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BlazorBuddies.Web.Tests", "tests\BlazorBuddies.Web.Tests\BlazorBuddies.Web.Tests.csproj", "{91B12CDC-85FC-44C9-A7F8-C20E6A27CCF7}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -31,6 +35,10 @@ Global
 		{81D2E20C-8C79-414D-8A59-40202EAAC804}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{81D2E20C-8C79-414D-8A59-40202EAAC804}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{81D2E20C-8C79-414D-8A59-40202EAAC804}.Release|Any CPU.Build.0 = Release|Any CPU
+		{91B12CDC-85FC-44C9-A7F8-C20E6A27CCF7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{91B12CDC-85FC-44C9-A7F8-C20E6A27CCF7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{91B12CDC-85FC-44C9-A7F8-C20E6A27CCF7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{91B12CDC-85FC-44C9-A7F8-C20E6A27CCF7}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -38,6 +46,7 @@ Global
 	GlobalSection(NestedProjects) = preSolution
 		{4F22B021-D3E9-4F35-9DAE-7EC0267839DD} = {AF7DA4F0-DE89-4362-AA53-5979A81C0877}
 		{81D2E20C-8C79-414D-8A59-40202EAAC804} = {5348ACB2-2D1B-4F64-86E2-CF8D52D6BE03}
+		{91B12CDC-85FC-44C9-A7F8-C20E6A27CCF7} = {F5AFEBDB-8D36-49E1-B0B7-8E9C098B62DE}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {F20716B7-01EA-4712-B68A-411AC36D16AB}
