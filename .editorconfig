@@ -8,7 +8,9 @@ end_of_line = lf
 
 #use soft tabs (spaces) for indentation
 indent_style = tab
-indent_size = 2;
+
+# While 2 spaces works well for streaming, it really doesn't work well for normal development or IDEs that do virtual tabs (ReSharper, CodeRush, etc)
+indent_size = 4;
 
 #Formatting - new line options
 
@@ -88,7 +90,8 @@ dotnet_style_require_accessibility_modifiers = for_non_interface_members:suggest
 #Style - Modifier preferences
 
 #when this rule is set to a list of modifiers, prefer the specified ordering.
-csharp_preferred_modifier_order = public,private,static,readonly:suggestion
+csharp_preferred_modifier_order = public,private,protected,internal,static,extern,new,virtual,abstract,sealed,override,readonly,unsafe,volatile,async:silent
+
 
 #Style - qualification options
 
