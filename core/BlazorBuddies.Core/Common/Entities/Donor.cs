@@ -16,6 +16,19 @@ namespace BlazorBuddies.Core.Common
         public string State { get; set; }
         public string PostalCode { get; set; }
         public Boolean OptOut { get; set; }
-        public string PhoneNumber { get; set; }
+				private string _phoneNumber;
+        public string PhoneNumber 
+				{ 
+					get 
+					{ 
+						return _phoneNumber; 
+					} 
+					set 
+					{
+						_phoneNumber = value;
+						NumberReachable = true;
+					} 
+				}
+				public bool NumberReachable { get; set; } = true; 
     }
 }

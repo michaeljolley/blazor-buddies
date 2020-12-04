@@ -1,11 +1,12 @@
-﻿@page "/admin"
-@using Microsoft.AspNetCore.Authorization
+﻿@*@page "/admin/Donors"*@
 @inject DonorService _donorService
 @using Microsoft.AspNetCore.SignalR.Client
 @using BlazorBuddies.Core.Common
 @inject NavigationManager _navManager
 @implements IDisposable
 @*@attribute [Authorize]*@
+
+<h3>ContactDonor</h3>
 
 <table>
     <thead>
@@ -42,8 +43,7 @@
 
     </tbody>
 </table>
-<input type="text" @bind="_message" />
-<button @onclick="GoGoGadgetSendTheSms">Don't Click me</button>
+
 @code {
 
     private HubConnection _hubConnection;
