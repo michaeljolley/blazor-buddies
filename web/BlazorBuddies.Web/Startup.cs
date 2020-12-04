@@ -1,5 +1,6 @@
-using System;
-using System.Linq;
+using BlazorBuddies.Core.Data;
+using BlazorBuddies.Web.Extensions;
+using BlazorBuddies.Web.States;
 
 using Microsoft.AspNetCore.Authentication.OpenIdConnect;
 using Microsoft.AspNetCore.Builder;
@@ -37,12 +38,9 @@ namespace BlazorBuddies.Web
 		// For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
 		public void ConfigureServices(IServiceCollection services)
 		{
+			services.AddAuthentication(OpenIdConnectDefaults.AuthenticationScheme).AddMicrosoftIdentityWebApp(Configuration.GetSection("AzureAdB2C"));
 
-			services.AddAuthentication(OpenIdConnectDefaults.AuthenticationScheme)
-							.AddMicrosoftIdentityWebApp(Configuration.GetSection("AzureAdB2C"));
-
-			services.AddControllersWithViews()
-							.AddMicrosoftIdentityUI();
+			services.AddControllersWithViews().AddMicrosoftIdentityUI();
 
 			services.AddAuthorization(options => options.FallbackPolicy = options.DefaultPolicy);
 
@@ -58,6 +56,7 @@ namespace BlazorBuddies.Web
 			});
 			services.AddServerSideBlazor(options => options.DetailedErrors = Environment.IsDevelopment())
 							.AddMicrosoftIdentityConsentHandler();
+
 			services.AddResponseCaching();
 			services.AddResponseCompression(options => {
 				options.Providers.Add<BrotliCompressionProvider>();
@@ -69,6 +68,7 @@ namespace BlazorBuddies.Web
 					opt.UseSqlServer(Configuration.GetConnectionString("BuddyDb"), b => b.MigrationsAssembly("BlazorBuddies.Web")));
 			services.AddDbContext<BuddyDbContext>();
 			services.AddScoped<DonorService>();
+
 			// States
 			services.AddSingleton<ApplicationState>();
 		}
@@ -81,6 +81,7 @@ namespace BlazorBuddies.Web
 			}
 			else {
 				app.UseExceptionHandler("/Error");
+
 				// The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
 				app.UseHsts();
 			}
@@ -108,7 +109,6 @@ namespace BlazorBuddies.Web
 			//app.UseAuthorization();
 
 			_ = app.UseEndpoints(endpoints => {
-
 				endpoints.MapControllers();
 				endpoints.MapGet("/webhooks/dlr", async context => 
 				{
@@ -120,33 +120,34 @@ namespace BlazorBuddies.Web
 				endpoints.MapHub<Hubs.DonorHub>("/donorHub");
 
 				// Health Check
-				endpoints.MapGet("/healthcheck", async context => {
+				endpoints.MapGet("/healthcheck",
+					async context => {
+						// make a call to fast EF method to validate db connection set efValid false if db issue
+						var efValid = true;
 
-					// make a call to fast EF method to validate db connection set efValid false if db issue
-					var efValid = true;
+						if (!efValid) {
+							// reply non-200 on db fail
+							context.Response.StatusCode = StatusCodes.Status428PreconditionRequired;
+						}
 
-					if (!efValid) {
-						// reply non-200 on db fail
-						context.Response.StatusCode = StatusCodes.Status428PreconditionRequired;
-					}
-
-					// Return ok
-					await context.Response.CompleteAsync().ConfigureAwait(false);
-				});
+						// Return ok
+						await context.Response.CompleteAsync().ConfigureAwait(false);
+					});
 
 				// Public Buddy Count API
-				endpoints.MapGet("/count", async context => await context.Response.WriteAsJsonAsync(new { applicationState.BuddyCount }));
+				endpoints.MapGet("/count", async context => await context.Response.WriteAsJsonAsync(new {applicationState.BuddyCount}));
 
-				endpoints.MapGet("/count/{count:int}", async context => {
-					var count = int.Parse(context.Request.RouteValues["count"]?.ToString() ?? "0");
-					await context.Response.CompleteAsync().ContinueWith(_ => applicationState.BuddyCount = count);
-				});
+				endpoints.MapGet("/count/{count:int}",
+					async context => {
+						var count = int.Parse(context.Request.RouteValues["count"]?.ToString() ?? "0");
+						await context.Response.CompleteAsync().ContinueWith(_ => applicationState.BuddyCount = count);
+					});
 
 				// Blazor
 				endpoints.MapBlazorHub();
 				endpoints.MapFallbackToPage("/_Host");
 
-        logger.LogInformation("Application Started");
+				logger.LogInformation("Application Started");
 			});
 		}
 	}
