@@ -15,6 +15,12 @@ using Microsoft.Extensions.Logging;
 using Microsoft.Identity.Web;
 using Microsoft.Identity.Web.UI;
 
+using BlazorBuddies.Core.Data;
+using BlazorBuddies.Web.Extensions;
+using BlazorBuddies.Web.States;
+
+using Vonage;
+
 namespace BlazorBuddies.Web
 {
 	public class Startup
@@ -38,12 +44,19 @@ namespace BlazorBuddies.Web
 
 			services.AddAuthorization(options => options.FallbackPolicy = options.DefaultPolicy);
 
+			var creds = Vonage.Request.Credentials.FromApiKeyAndSecret(Configuration["VONAGE_API_KEY"], Configuration["VONAGE_API_SECRET"]);
+			services.AddSingleton(new VonageClient(creds));
+
+			services.AddSignalR();
+			
 			// Core Services
 			services.AddRazorPages(options => {
-				options.Conventions.AllowAnonymousToFolder("/");
+					options.Conventions.AllowAnonymousToFolder("/");
+					options.Conventions.AllowAnonymousToFolder("/donorHub");				  
 			});
+			services.AddServerSideBlazor(options => options.DetailedErrors = Environment.IsDevelopment())
+							.AddMicrosoftIdentityConsentHandler();
 
-			services.AddServerSideBlazor(options => options.DetailedErrors = Environment.IsDevelopment()).AddMicrosoftIdentityConsentHandler();
 			services.AddResponseCaching();
 			services.AddResponseCompression(options => {
 				options.Providers.Add<BrotliCompressionProvider>();
@@ -52,7 +65,9 @@ namespace BlazorBuddies.Web
 
 			//Recommended approach is to create DbContexts in Blazor Server-Side using a DbContextFactory
 			services.AddDbContextFactory<BuddyDbContext>(opt =>
-				opt.UseSqlServer(Configuration.GetConnectionString("BuddyDb"), b => b.MigrationsAssembly("BlazorBuddies.Web")));
+					opt.UseSqlServer(Configuration.GetConnectionString("BuddyDb"), b => b.MigrationsAssembly("BlazorBuddies.Web")));
+			services.AddDbContext<BuddyDbContext>();
+			services.AddScoped<DonorService>();
 
 			// States
 			services.AddSingleton<ApplicationState>();
@@ -90,11 +105,19 @@ namespace BlazorBuddies.Web
 			// Routing 
 			app.UseRouting();
 
-			app.UseAuthentication();
-			app.UseAuthorization();
+			//app.UseAuthentication();
+			//app.UseAuthorization();
 
 			_ = app.UseEndpoints(endpoints => {
 				endpoints.MapControllers();
+				endpoints.MapGet("/webhooks/dlr", async context => 
+				{
+					var dlr = Vonage.Utility.WebhookParser.ParseQuery<Vonage.Messaging.DeliveryReceipt>(context.Request.Query);
+					var service = (DonorService)app.ApplicationServices.GetService(typeof(DonorService));
+					await service.HandleDlr(dlr);
+				});
+
+				endpoints.MapHub<Hubs.DonorHub>("/donorHub");
 
 				// Health Check
 				endpoints.MapGet("/healthcheck",

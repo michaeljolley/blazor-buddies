@@ -7,6 +7,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.SignalR.Client" Version="5.0.0" />
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="5.0.0" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="5.0.0" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="5.0.0" />
@@ -15,7 +16,8 @@
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
     <PackageReference Include="Microsoft.Identity.Web" Version="1.3.0" />
-    <PackageReference Include="Microsoft.Identity.Web.UI" Version="1.3.0" />  
+    <PackageReference Include="Microsoft.Identity.Web.UI" Version="1.3.0" />
+    <PackageReference Include="vonage" Version="5.6.0" />  
   </ItemGroup>
 
   <ItemGroup>
@@ -28,6 +30,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Content Remove="Admin\Donors.razor" />
     <Content Remove="Shared\LoginDisplay.razor" />
   </ItemGroup>
 
@@ -36,6 +39,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Watch Remove="Admin\Donors.razor" />
     <Watch Remove="Admin\NavBar.razor" />
     <Watch Remove="Admin\NavBar.razor.css" />
     <Watch Remove="Admin\Schools.razor" />
@@ -48,6 +52,14 @@
 
   <ItemGroup>
     <Content Include="Admin\NavBar.razor.css" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="NewFolder\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="Admin\Donors.razor" />
   </ItemGroup>
 
 </Project>
