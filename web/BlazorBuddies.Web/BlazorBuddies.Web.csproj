@@ -28,34 +28,4 @@
     <Watch Include="**\*.razor" />
     <Watch Include="**\*.css" />
   </ItemGroup>
-
-  <ItemGroup>
-    <Content Remove="Admin\Donors.razor" />
-    <Content Remove="Shared\LoginDisplay.razor" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <None Remove="Admin\NavBar.razor.css" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Watch Remove="Admin\Donors.razor" />
-    <Watch Remove="Admin\NavBar.razor" />
-    <Watch Remove="Admin\NavBar.razor.css" />
-    <Watch Remove="Admin\Schools.razor" />
-    <Watch Remove="Admin\_Imports.razor" />
-    <Watch Remove="Pages\OhCrap.razor" />
-    <Watch Remove="Shared\AdminLayout.razor" />
-    <Watch Remove="Shared\LoginDisplay.razor" />
-    <Watch Remove="Shared\MainLayout - Copy.razor.css" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Content Include="Admin\NavBar.razor.css" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <None Include="Admin\Donors.razor" />
-  </ItemGroup>
-
 </Project>

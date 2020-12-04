@@ -59,6 +59,16 @@
       "contributions": [
         "code"
       ]
+    },
+    {
+      "login": "canhorn",
+      "name": "Cody Merritt Anhorn",
+      "avatar_url": "https://avatars2.githubusercontent.com/u/5433919?v=4",
+      "profile": "https://codyanhorn.tech/",
+      "contributions": [
+        "test",
+        "code"
+      ]
     }
   ],
   "contributorsPerLine": 7,
