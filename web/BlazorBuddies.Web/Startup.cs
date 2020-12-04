@@ -1,5 +1,6 @@
 using BlazorBuddies.Core.Data;
 using BlazorBuddies.Web.Extensions;
+using BlazorBuddies.Web.Hubs;
 using BlazorBuddies.Web.States;
 
 using Microsoft.AspNetCore.Authentication.OpenIdConnect;
@@ -15,11 +16,10 @@ using Microsoft.Extensions.Logging;
 using Microsoft.Identity.Web;
 using Microsoft.Identity.Web.UI;
 
-using BlazorBuddies.Core.Data;
-using BlazorBuddies.Web.Extensions;
-using BlazorBuddies.Web.States;
-
 using Vonage;
+using Vonage.Messaging;
+using Vonage.Request;
+using Vonage.Utility;
 
 namespace BlazorBuddies.Web
 {
@@ -41,21 +41,20 @@ namespace BlazorBuddies.Web
 			services.AddAuthentication(OpenIdConnectDefaults.AuthenticationScheme).AddMicrosoftIdentityWebApp(Configuration.GetSection("AzureAdB2C"));
 
 			services.AddControllersWithViews().AddMicrosoftIdentityUI();
-
+			
 			services.AddAuthorization(options => options.FallbackPolicy = options.DefaultPolicy);
 
-			var creds = Vonage.Request.Credentials.FromApiKeyAndSecret(Configuration["VONAGE_API_KEY"], Configuration["VONAGE_API_SECRET"]);
+			var creds = Credentials.FromApiKeyAndSecret(Configuration["VONAGE_API_KEY"], Configuration["VONAGE_API_SECRET"]);
 			services.AddSingleton(new VonageClient(creds));
 
 			services.AddSignalR();
-			
+
 			// Core Services
 			services.AddRazorPages(options => {
-					options.Conventions.AllowAnonymousToFolder("/");
-					options.Conventions.AllowAnonymousToFolder("/donorHub");				  
+				options.Conventions.AllowAnonymousToFolder("/");
+				options.Conventions.AllowAnonymousToFolder("/donorHub");
 			});
-			services.AddServerSideBlazor(options => options.DetailedErrors = Environment.IsDevelopment())
-							.AddMicrosoftIdentityConsentHandler();
+			services.AddServerSideBlazor(options => options.DetailedErrors = Environment.IsDevelopment()).AddMicrosoftIdentityConsentHandler();
 
 			services.AddResponseCaching();
 			services.AddResponseCompression(options => {
@@ -65,7 +64,7 @@ namespace BlazorBuddies.Web
 
 			//Recommended approach is to create DbContexts in Blazor Server-Side using a DbContextFactory
 			services.AddDbContextFactory<BuddyDbContext>(opt =>
-					opt.UseSqlServer(Configuration.GetConnectionString("BuddyDb"), b => b.MigrationsAssembly("BlazorBuddies.Web")));
+				opt.UseSqlServer(Configuration.GetConnectionString("BuddyDb"), b => b.MigrationsAssembly("BlazorBuddies.Web")));
 			services.AddDbContext<BuddyDbContext>();
 			services.AddScoped<DonorService>();
 
@@ -110,16 +109,11 @@ namespace BlazorBuddies.Web
 
 			_ = app.UseEndpoints(endpoints => {
 				endpoints.MapControllers();
-				endpoints.MapGet("/webhooks/dlr", async context => 
-				{
-					var dlr = Vonage.Utility.WebhookParser.ParseQuery<Vonage.Messaging.DeliveryReceipt>(context.Request.Query);
-					var service = (DonorService)app.ApplicationServices.GetService(typeof(DonorService));
-					await service.HandleDlr(dlr);
-				});
 
-				endpoints.MapHub<Hubs.DonorHub>("/donorHub");
+				endpoints.MapHub<DonorHub>("/donorHub");
 
 				// Health Check
+				// TODO: Use the actual HealthCheck libraries in ASP.NET to handle DB health checks.
 				endpoints.MapGet("/healthcheck",
 					async context => {
 						// make a call to fast EF method to validate db connection set efValid false if db issue
@@ -134,14 +128,6 @@ namespace BlazorBuddies.Web
 						await context.Response.CompleteAsync().ConfigureAwait(false);
 					});
 
-				// Public Buddy Count API
-				endpoints.MapGet("/count", async context => await context.Response.WriteAsJsonAsync(new {applicationState.BuddyCount}));
-
-				endpoints.MapGet("/count/{count:int}",
-					async context => {
-						var count = int.Parse(context.Request.RouteValues["count"]?.ToString() ?? "0");
-						await context.Response.CompleteAsync().ContinueWith(_ => applicationState.BuddyCount = count);
-					});
 
 				// Blazor
 				endpoints.MapBlazorHub();
