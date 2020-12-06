@@ -1,3 +1,60 @@
 ﻿section {
-   
+    flex-direction: row;
+    background: #fff;
+    padding-bottom: 35px;
+    position: relative;
+    width: 100%;
+    justify-content: center;
+    color: var(--light-gray);
+    opacity: 1;
 }
+
+.container {
+}
+
+#education {
+    display: grid;
+    grid-template-areas:
+        'description description description'
+        'header      header      header'
+        'item1       item2       item3'
+        'item4       item5       item6';
+    grid-gap: 0px;
+    padding: 0px;
+    margin-top: 2rem;
+    text-align: center;
+}
+
+    #education > div {
+
+    }
+    
+#description {
+    display: block;
+    grid-area: description;
+    font-size: 1.4rem;
+    font-weight: 300;
+    letter-spacing: 0.1rem;
+    line-height: 2.4rem;
+    justify-content: center;
+    margin-top: 3rem;
+    margin-right: 8vw;
+    margin-left: 8vw;
+}
+
+#header {
+    grid-area: header;
+    font-family: 'Oswald', sans-serif;
+    font-weight: 400;
+    font-size: 3.7rem;
+    color: black;
+    line-height: 5.5rem;
+    text-transform: uppercase;
+    text-align: center;
+    margin-top: 3rem;
+    margin-bottom: 3rem;
+    opacity: 1;
+}
+    #header span {
+        color: var(--light-blue);
+    }

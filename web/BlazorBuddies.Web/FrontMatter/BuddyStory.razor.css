@@ -17,13 +17,13 @@ img {
 }
 
 h3 {
-    color: #999;
+    color: var(--light-gray);
     opacity: 1;
     top: 0px;
 }
 
 p {
-    color: #999;
+    color: var(--light-gray);
     opacity: 1;
     bottom: 0px;
 }

@@ -1,0 +1,18 @@
+﻿<div class="@AlternateClass">
+    <span><i class="@IconStyle @IconName fa-2x fa-fw @AlternateClass"></i></span>
+    <h3 class="@AlternateClass animate_top">@Title</h3>
+    <p class="@AlternateClass">
+        @ChildContent
+    </p>
+</div>
+
+@code {
+    [Parameter] public string Title { get; set; } = null!;
+    [Parameter] public string IconStyle { get; set; } = null!;
+    [Parameter] public string IconName { get; set; } = null!;
+    [Parameter] public bool Alternate { get; set; } = false;
+    [Parameter] public RenderFragment ChildContent { get; set; } = null!;
+
+    public string AlternateClass => Alternate ? "alt" : "";
+
+}
