@@ -9,26 +9,30 @@
     opacity: 1;
 }
 
-.container {
-}
-
 #education {
     display: grid;
     grid-template-areas:
         'description description description'
-        'header      header      header'
-        'item1       item2       item3'
-        'item4       item5       item6';
+        'header      header      header';
     grid-gap: 0px;
     padding: 0px;
     margin-top: 2rem;
     text-align: center;
 }
 
-    #education > div {
-
+@media only screen and (max-width : 900px) {
+    #education {
+        grid-template-areas: 'description description' 'header header' 'item1 item2';
     }
-    
+}
+
+@media only screen and (max-width : 600px) {
+    #education {
+        grid-template-areas: 'description' 'header' 'item';
+    }
+}
+
+
 #description {
     display: block;
     grid-area: description;

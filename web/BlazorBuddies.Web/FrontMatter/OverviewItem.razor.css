@@ -1,11 +1,12 @@
 ﻿div {
-    padding: 2rem;
+    padding: 2rem 2.5rem 0.8rem 2.5rem;
     margin: 0px;
     text-align: center;
 }
 
 span {
     color: var(--light-blue) !important;
+    font-size: 2.5rem;
 }
 
 h3 {
@@ -15,7 +16,6 @@ h3 {
     color: var(--light-gray);
     margin-top: 1rem;
     opacity: 1;
-    top: 0px;
 }
 
 p {
@@ -25,15 +25,14 @@ p {
     letter-spacing: 0.045rem;
     line-height: 1.7rem;
     opacity: 1;
-    bottom: 0px;
 }
 
 .alt {
     background-color: var(--light-blue);
     color: var(--white) !important;
+}
 
-
-.alt span {
+.alt * {
     background-color: none !important;
     color: var(--white) !important;
 }
