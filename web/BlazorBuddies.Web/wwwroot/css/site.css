@@ -1,9 +1,13 @@
 @import url('blazor.css');
 
 :root {
+    --blue-green: rgb(37, 124, 135);
     --dark-blue: #123241;
     --dark-blue-transparent: rgba(18, 50, 65, .4);
     --light-blue: rgb(97, 199, 212);
+    --light-gray: rgb(153, 153, 153);
+    --very-light-gray: rgb(232, 230, 227);
+    --white: #fff;
 }
 
 /* Reset */

@@ -1,6 +1,6 @@
 ﻿section {
     flex-direction: row;
-    background: #fff;
+    background: var(--white);
     padding-bottom: 35px;
     position: relative;
     width: 100%;
