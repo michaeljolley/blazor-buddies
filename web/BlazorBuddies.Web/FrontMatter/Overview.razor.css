@@ -20,13 +20,7 @@
     text-align: center;
 }
 
-@media only screen and (max-width : 900px) {
-    #education {
-        grid-template-areas: 'description description' 'header header' 'item1 item2';
-    }
-}
-
-@media only screen and (max-width : 600px) {
+@media only screen and (max-width : 960px) {
     #education {
         grid-template-areas: 'description' 'header' 'item';
     }
