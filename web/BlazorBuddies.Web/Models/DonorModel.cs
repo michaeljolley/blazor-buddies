@@ -14,9 +14,7 @@ namespace BlazorBuddies.Web
 
 		public DonorModel(Donor donor)
 		{
-			foreach (var property in typeof(Donor).GetProperties(BindingFlags.Public|BindingFlags.Instance)) {
-				property.SetValue(this, property.GetValue(donor));
-			}
+			ReflectionCache<Donor>.ClonePropertyValues(donor, this);
 		}
 	}
 
